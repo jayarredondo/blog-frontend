@@ -1,0 +1,9 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "PROJECT DONE!",
+      "body": "This is a blog post coming from the db.json file! Using the Fetch API is pretty cool!"
+    }
+  ]
+}
