@@ -17,23 +17,24 @@ const login = async () => {
       'Authorization': 'Basic ' + btoa('rest-blog-client:secret')
     },
     body: `grant_type=${obj.grant_type}&username=${obj.username}&password=${obj.password}&client_id=rest-blog-client`
-  }).then(data => {
-    console.log(data);
-    if(data.route['access_token']) {
-      localStorage.setItem('access_token', data.route['access_token'])
+  }).then(data => data.json()).then(data => {
+    if (data.access_token) {
+      console.log("storing token...")
+      localStorage.setItem('access_token', data.access_token)
     }
-    if (data.route['refresh_token']) {
-      localStorage.setItem("refresh_token", data.route['refresh_token']);
+    if (data.refresh_token) {
+      localStorage.setItem("refresh_token", data.refresh_token);
       console.log("Refresh token set")
     }
-  });
+  })
 }
+
 
 login();
 
 </script>
 
 <template>
-  <TopNav />
+  <TopNav/>
   <RouterView/>
 </template>
