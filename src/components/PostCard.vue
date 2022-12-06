@@ -1,7 +1,15 @@
 <script setup>
-const props = defineProps(['post']);
+import {ref} from "vue";
 
+const props = defineProps(['post', 'currentUser']);
 const emit = defineEmits(["deletePost"]);
+
+const user = ref();
+
+user.value = props.currentUser;
+
+console.log(user.value);
+console.log(props.post.author)
 
 </script>
 <template>
@@ -9,9 +17,11 @@ const emit = defineEmits(["deletePost"]);
     <div class="card-body">
       <h5 class="card-title">{{ props.post.title }}</h5>
       <p class="card-text">{{ props.post.body }}</p>
+      <div v-if="user.userName === props.post.author.username">
       <RouterLink class="btn btn-primary me-3" :to="{name: 'editPost', params: {id: props.post.id}}">Edit
       </RouterLink>
       <button class="btn btn-danger" @click="$emit('deletePost', props.post.id)">Delete</button>
+      </div>
     </div>
   </div>
 </template>

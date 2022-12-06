@@ -4,9 +4,10 @@ import { useRouter } from 'vue-router';
 import PostForm from "../components/PostForm.vue";
 
 const router = useRouter();
-const URL = "http://localhost:3000/posts";
+const URL = "http://localhost:8080/api/posts/create";
 
 let newPost = ref({title: "", body: ""})
+const token = localStorage.getItem("access_token");
 
 
 const addPost = async (post) => {
@@ -14,7 +15,8 @@ const addPost = async (post) => {
   let resp = await fetch(URL, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify(post)
   })

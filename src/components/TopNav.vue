@@ -1,4 +1,24 @@
 <script setup>
+import {ref} from "vue";
+import {useRouter} from "vue-router";
+
+// THIS NEEDS WORK
+
+const isLoggedIn = ref();
+const router = useRouter()
+
+if(localStorage.getItem("access_token")) {
+  isLoggedIn.value = true;
+} else {
+  isLoggedIn.value = false;
+}
+
+const logoutHandler = () => {
+  localStorage.clear();
+  isLoggedIn.value = false;
+  router.push("/login");
+}
+
 </script>
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
@@ -24,6 +44,14 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <ul class="navbar-nav">
+          <li class="nav-item" v-if="!isLoggedIn">
+            <RouterLink class="nav-link" to="/login">Login</RouterLink>
+          </li>
+          <li class="nav-item" v-if="isLoggedIn">
+            <button class="nav-item" @click="logoutHandler">Logout</button>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>

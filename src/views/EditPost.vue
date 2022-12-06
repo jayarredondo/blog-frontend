@@ -5,9 +5,10 @@ import Loading from "../components/Loading.vue";
 import PostForm from "../components/PostForm.vue";
 
 const isLoading = ref(false);
+const token = localStorage.getItem("access_token");
 const route = useRoute();
 const router = useRouter();
-const URL = "http://localhost:3000/posts";
+const URL = "http://localhost:8080/api/posts";
 const postToEdit = ref({id: null, title: "", rating: null});
 
 const getPostById = async () => {
@@ -20,10 +21,11 @@ const getPostById = async () => {
 }
 
 const editPost = async (post) => {
-  await fetch(`${URL}/${post.id}`, {
+  await fetch(`${URL}/${post.id}/edit`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify(post)
   })
