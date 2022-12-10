@@ -8,7 +8,7 @@ const isLoading = ref(false);
 const token = localStorage.getItem("access_token");
 const route = useRoute();
 const router = useRouter();
-const URL = "http://localhost:8080/api/posts";
+const URL = "http://jayarredondo.xyz:8080/api/posts";
 const postToEdit = ref({id: null, title: "", rating: null});
 
 const getPostById = async () => {

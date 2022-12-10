@@ -15,7 +15,7 @@ const login = async () => {
     grant_type: 'password'
   }
 
-  await fetch("http://localhost:8080/oauth/token", {
+  await fetch("http://jayarredondo.xyz:8080/oauth/token", {
     method: "POST",
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',

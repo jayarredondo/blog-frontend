@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import PostForm from "../components/PostForm.vue";
 
 const router = useRouter();
-const URL = "http://localhost:8080/api/posts/create";
+const URL = "http://jayarredondo.xyz:8080/api/posts/create";
 
 let newPost = ref({title: "", body: ""})
 const token = localStorage.getItem("access_token");

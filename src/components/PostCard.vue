@@ -8,9 +8,6 @@ const user = ref();
 
 user.value = props.currentUser;
 
-console.log(user.value);
-console.log(props.post.author)
-
 </script>
 <template>
   <div class="card mb-3 bg-dark border-light">

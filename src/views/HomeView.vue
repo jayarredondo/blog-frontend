@@ -7,7 +7,7 @@ import {useRouter} from "vue-router";
 const router = useRouter();
 const posts = ref([]);
 const isLoading = ref(false);
-const URL = "http://localhost:8080/api/posts";
+const URL = "http://jayarredondo.xyz:8080/api/posts";
 const token = localStorage.getItem("access_token");
 const currentUser = ref();
 
@@ -33,14 +33,12 @@ const getAllPosts = async (url) => {
   isLoading.value = true;
   console.log("Fetching posts...");
   posts.value = await fetch(url).then(resp => resp.json());
-  console.log(posts.value)
   isLoading.value = false;
   return posts.value;
 }
 
 if (posts.value.length <= 0) {
   getAllPosts(URL);
-  console.log(posts.value)
 }
 
 const deletePost = async (id) => {
