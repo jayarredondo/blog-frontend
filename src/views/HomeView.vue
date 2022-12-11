@@ -64,7 +64,7 @@ async function removeStaleTokens() {
           'Content-Type': 'application/json', 'Authorization': 'Bearer ' + `${localStorage.getItem("access_token")}`
         } : {'Content-Type': 'application/json'}
   }
-  await fetch("http://jayarredondo.xyz/api/users/me", request)
+  await fetch("http://jayarredondo.xyz:8080/api/users/me", request)
       .then((response) => {
         // if fetch error then you might be using stale tokens
         console.log(response.status)
